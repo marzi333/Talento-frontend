@@ -1,10 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
-import DigitalClarification from "pages/DigitalClarification/DigitalClarification";
+import { Routes, Route, NavLink } from "react-router-dom";
 import JobApplication from "pages/JobApplication/JobApplication";
-import TechnicalDeepDive from "pages/TechnicalDeepDive/TechnicalDeepDive";
 import ViewFinalCandidates from "pages/ViewFinalCandidates/ViewFinalCandidates";
 import {
   Toolbar,

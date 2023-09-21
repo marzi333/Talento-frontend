@@ -1,131 +1,168 @@
-import { Rowing } from '@material-ui/icons';
-import { Margin } from '@mui/icons-material';
-import { Button, Card, Divider, Grid, List, ListItem, Typography } from '@mui/material'
-import React from 'react'
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Rowing } from "@material-ui/icons";
+import { Margin } from "@mui/icons-material";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+// import { mkdir } from 'fs/promises';
+import { postAndEvaluateFreelancer } from "../../services/api/jobApplication.services.js";
 
+import {
+  Box,
+  Tabs,
+  Typography,
+  Tab,
+  createTheme,
+  Collapse,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import JobApplicationTab from "components/jobApplication/JobApplicationTab";
+import TechnicalDeepDiveTab from "components/jobApplication/TechnicalDeepDiveTab";
+import DigitalClarificationTab from "components/jobApplication/DigitalClarificationTab";
 
-function JobApplication() {
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Card style={{padding:20}}>
-
-    <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start">
-        <Grid item xs={6}>
-            <Typography variant="h3" color={'black'} textAlign={'left'} gutterBottom>Java Staff Software Engineer - Distributed Systems</Typography>
-        </Grid> <Grid item xs={6}/>
-
-        <Grid item xs={6}>
-        <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>We're Celonis, the global leader in execution management and process mining technology, and one of the 50 most valuable private companies in the world. We believe that every company can unlock its full execution capacity - and for that, we need you to join us.</Typography>
-        </Grid> <Grid item xs={8}/>
-
-        <Divider/>
-        <Grid item xs={6}>
-        <Typography variant="subtitle2" color={'black'} textAlign={'left'} gutterBottom><strong>The Team:</strong></Typography>
-        </Grid> <Grid item xs={8}/>
-
-        <Grid item xs={6}>
-        <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-        You will be part of the Core Mining Engine team. The Core Mining Engine enables our customers to interactively process mine enterprise sized data sets. To achieve that goal we developed our own analytical database. In order to handle the strong growth of our customer base and their demands we heavily invest on the scalability of the Core Mining Engine.
-            </Typography>
-        </Grid> <Grid item xs={8}/>
-
-        <Grid item xs={6}>
-        <Typography variant="subtitle2" color={'black'} textAlign={'left'} gutterBottom><strong>
-            The Role:
-            </strong></Typography>
-        </Grid> <Grid item xs={8}/>
-
-        <Grid item xs={6}>
-        <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-        As a member of the Core Mining Engine team you will work on our analytical database which is built on a microservice architecture, optimized to process large amounts of data. You will address scaling problems, increasing robustness while maintaining cost efficiency and integrating the Core Mining Engine with new technologies like Apache Kafka.             </Typography>
-        </Grid> <Grid item xs={8}/>
-
-        
-        <Grid item xs={6}>
-        <Typography variant="subtitle2" color={'black'} textAlign={'left'} gutterBottom><strong>
-        The work you’ll do:
-            </strong></Typography>
-        </Grid><Grid item xs={6}></Grid>
-
-        <Grid item xs={6}>
-        <List sx = {{listStyleType: 'disc',pl: 2,}}>
-        
-
-            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-            Implementing features in existing or newly created microservices                 
-            </Typography>
-            </ListItem>
-
-                        <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>Take ownership of features from design to operation            </Typography>
-            </ListItem>
-
-            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>            Collaborate with various teams and coworkers to cope with rapidly increasing system workload
-            </Typography>
-            </ListItem>
-
-            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>Identify and eliminate bottlenecks in our current system
-            </Typography>
-            </ListItem>
-            
-        </List></Grid> <Grid item xs={8}/>
-
-        <Grid item xs={6}>
-        <Typography variant="subtitle2" color={'black'} textAlign={'left'} gutterBottom><strong>
-            The qualification you need:
-            </strong></Typography>
-        </Grid> <Grid item xs={8}/>
-        
-        <Grid item xs={6}>
-        <List sx = {{listStyleType: 'disc',pl: 2,}}>
-
-            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-        You have experience with writing scalable, reliable, and testable software
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You are fluent in Java. Python or C++ are a plus
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You have experience with developing data-intensive and performance-critical systems
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You know how to analyze complex systems
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You have solid knowledge of data structures / algorithms
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You have solid knowledge about asynchronous / concurrent programming and have worked with the low-level building blocks of synchronization like semaphores, read-write locks, mutexes etc.
-</Typography>
-            </ListItem>            <ListItem sx = {{display: 'list-item'}}>
-            <Typography variant="body1" color={'black'} textAlign={'left'} gutterBottom>
-You made first experiences with Spring
-</Typography>
-            </ListItem>
-        </List></Grid> <Grid item xs={8}/>
-
-        <Grid item xs={6}>
-        <Typography variant='body1' textAlign={'left'} ><strong>Resume/CV*:</strong></Typography>
-        </Grid><Grid item xs={8}/>
-
-        <Divider/>
-        <Grid item xs={12} alignSelf={'flex-end'}>
-            
-                <Button variant="contained" sx={{ backgroundColor: "#AAFF00", color:"black"}}>Next</Button>
-        </Grid>
-    </Grid>
-    </Card>
-    
-  )
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
-export default JobApplication
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+function JobApplication() {
+  const [value, setValue] = React.useState(1);
+  const [showApplicationSubmittedAlert, toggleApplicationSubmittedAlert] =
+    React.useState(false);
+  const [candidate, setCandidate] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    cvUrl: "",
+  });
+  const handleSaveCandidateInfo = (updatedInfo) => {
+    setCandidate({
+      ...candidate,
+      id: "0",
+      firstName: updatedInfo.firstName,
+      lastName: updatedInfo.lastName,
+      email: updatedInfo.email,
+      phone: updatedInfo.phone,
+    });
+    setValue(1);
+  };
+
+  const handleUploadCV = (pdfFile) => {
+    const storageRef = firebase.storage().ref();
+    const pdfRef = storageRef.child(`pdfs/${pdfFile.name}`);
+
+    pdfRef
+      .put(pdfFile)
+      .then((snapshot) => {
+        console.log("PDF uploaded", snapshot);
+        pdfRef
+          .getDownloadURL()
+          .then((url) => {
+            setCandidate({ ...candidate, cvUrl: url });
+          })
+          .catch((error) => {
+            console.log("Error getting download URL", error);
+          });
+      })
+      .catch((error) => {
+        console.log("Error uploading PDF", error);
+      });
+  };
+
+  const handleGenerateAndStoreAutoCV = () => {
+    setValue(2);
+  };
+
+  const submitApplication = () => {
+    // fs.mkdir(directoryName, (error) => {
+    //     if (error) {
+    //       console.error(`Error creating directory: ${error}`);
+    //     } else {
+    //       console.log(`Directory '${directoryName}' created successfully.`);
+    //     }
+    //   });
+
+    async function evaluateCandidate() {
+      const res = await postAndEvaluateFreelancer(candidate.cvUrl);
+      console.log("res",res);
+    }
+    evaluateCandidate();
+
+    toggleApplicationSubmittedAlert(true);
+    setValue(0);
+  };
+
+  return (
+    <div>
+      <Collapse in={showApplicationSubmittedAlert}>
+        <Alert
+          severity="warning"
+          onClose={() => {
+            toggleApplicationSubmittedAlert(false);
+          }}
+        >
+          <AlertTitle>Application Submitted!</AlertTitle>
+          Thank you for submitting your application. HR will get back to you as
+          soon as possible.
+        </Alert>
+      </Collapse>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          aria-label="basic tabs example"
+          textColor="inherit"
+          indicatorColor="secondary"
+        >
+          <Tab disabled={true} label="Job Application" {...a11yProps(0)} />
+          <Tab disabled={true} label="General Questions" {...a11yProps(1)} />
+          <Tab disabled={true} label="Technical Deep-Dive" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <JobApplicationTab
+          candidate={candidate}
+          handleNext={handleSaveCandidateInfo}
+          uploadFile={handleUploadCV}
+        />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <DigitalClarificationTab handleNext={handleGenerateAndStoreAutoCV} />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <TechnicalDeepDiveTab handleSubmit={submitApplication} />
+      </CustomTabPanel>
+    </div>
+  );
+}
+
+export default JobApplication;
