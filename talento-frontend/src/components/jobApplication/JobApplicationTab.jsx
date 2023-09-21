@@ -1,4 +1,6 @@
+// @ts-ignore
 import { Rowing } from "@material-ui/icons";
+// @ts-ignore
 import { Margin } from "@mui/icons-material";
 import {
   Button,
@@ -20,6 +22,7 @@ function JobApplicationTab({ candidate, handleNext, uploadFile }) {
     handleSubmit,
     getValues,
     setValue,
+    // @ts-ignore
     clearErrors,
     formState: { errors },
   } = useForm({
@@ -315,6 +318,7 @@ function JobApplicationTab({ candidate, handleNext, uploadFile }) {
                 defaultValue={getValues("firstName")}
                 fullWidth
                 variant="standard"
+                // @ts-ignore
                 error={errors.firstName}
                 helperText={errors.firstName?.message}
                 {...register("firstName", {
@@ -337,6 +341,7 @@ function JobApplicationTab({ candidate, handleNext, uploadFile }) {
                 defaultValue={getValues("lastName")}
                 fullWidth
                 variant="standard"
+                // @ts-ignore
                 error={errors.lastName}
                 helperText={errors.lastName?.message}
                 {...register("lastName", {
@@ -359,6 +364,7 @@ function JobApplicationTab({ candidate, handleNext, uploadFile }) {
                 defaultValue={getValues("email")}
                 fullWidth
                 variant="standard"
+                // @ts-ignore
                 error={errors.firstName}
                 helperText={errors.firstName?.message}
                 {...register("email", {
@@ -379,6 +385,7 @@ function JobApplicationTab({ candidate, handleNext, uploadFile }) {
                 defaultValue={getValues("phone")}
                 fullWidth
                 variant="standard"
+                // @ts-ignore
                 error={errors.phone}
                 helperText={errors.phone?.message}
                 {...register("phone", {

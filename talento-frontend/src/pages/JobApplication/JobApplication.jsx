@@ -18,8 +18,7 @@ import {
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import JobApplicationTab from "components/jobApplication/JobApplicationTab";
-import TechnicalDeepDiveTab from "components/jobApplication/TechnicalDeepDiveTab";
-import DigitalClarificationTab from "components/jobApplication/DigitalClarificationTab";
+import QuestionsTab from "components/jobApplication/QuestionsTab.jsx";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +53,7 @@ function a11yProps(index) {
   };
 }
 function JobApplication() {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
   const [showApplicationSubmittedAlert, toggleApplicationSubmittedAlert] =
     React.useState(false);
   const [candidate, setCandidate] = useState({
@@ -99,18 +98,9 @@ function JobApplication() {
       });
   };
 
-  const handleGenerateAndStoreAutoCV = () => {
-    setValue(2);
-  };
 
   const submitApplication = () => {
-    // fs.mkdir(directoryName, (error) => {
-    //     if (error) {
-    //       console.error(`Error creating directory: ${error}`);
-    //     } else {
-    //       console.log(`Directory '${directoryName}' created successfully.`);
-    //     }
-    //   });
+    
 
     async function evaluateCandidate() {
       const res = await postAndEvaluateFreelancer(candidate.cvUrl);
@@ -145,7 +135,6 @@ function JobApplication() {
         >
           <Tab disabled={true} label="Job Application" {...a11yProps(0)} />
           <Tab disabled={true} label="General Questions" {...a11yProps(1)} />
-          <Tab disabled={true} label="Technical Deep-Dive" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -156,10 +145,7 @@ function JobApplication() {
         />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <DigitalClarificationTab handleNext={handleGenerateAndStoreAutoCV} />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        <TechnicalDeepDiveTab handleSubmit={submitApplication} />
+        <QuestionsTab handleNext={submitApplication} />
       </CustomTabPanel>
     </div>
   );
