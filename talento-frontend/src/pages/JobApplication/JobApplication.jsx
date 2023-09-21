@@ -51,9 +51,10 @@ function a11yProps(index) {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
+
 }
 function JobApplication() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
   const [showApplicationSubmittedAlert, toggleApplicationSubmittedAlert] =
     React.useState(false);
   const [candidate, setCandidate] = useState({
