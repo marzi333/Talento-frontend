@@ -54,15 +54,15 @@ function a11yProps(index) {
 
 }
 function JobApplication() {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
   const [showApplicationSubmittedAlert, toggleApplicationSubmittedAlert] =
     React.useState(false);
   const [candidate, setCandidate] = useState({
     id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    firstName: "Max",
+    lastName: "Musterman",
+    email: "musterm@mytum.de",
+    phone: "01781111111",
     cvUrl: "",
   });
   const handleSaveCandidateInfo = (updatedInfo) => {
